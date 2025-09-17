@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice 2</title>
+</head>
+<body>
+    <h1>Welcome to Practice 2: CSS Update Page</h1>
+        <div>
+            <label for="r">Red:</label>
+            <input type="number" id="red" min="0" max="255" value="0">
+            <label for="g">Green:</label>
+            <input type="number" id="green" min="0" max="255" value="0">
+            <label for="b">Blue:</label>
+            <input type="number" id="blue" min="0" max="255" value="0">
+            <label for="borderWidth">Border Width (px):</label>
+            <input type="number" id="borderWidth" min="1" max="20" value="2">
+            <button onclick="changeColor()">Change Color</button>
+        </div>
+        <script>
+            function changeColor() {
+                const red = document.getElementById('red').value;
+                const green = document.getElementById('green').value;
+                const blue = document.getElementById('blue').value;
+                const borderWidth = document.getElementById('borderWidth').value;
+                const color = `rgb(${red},${green},${blue})`;
+                const textElem = document.getElementById('colorText');
+                textElem.style.color = color;
+                textElem.style.borderColor = color;
+                textElem.style.borderWidth = borderWidth + 'px';
+            }
+        </script>
+    <p id="colorText" style="border: 2px solid #333; padding: 10px; border-radius: 6px; border-color: #000;">I couldn't think of a paragraph so: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Practice 3</title>
+</head>
+<body>
+    <h1>Practice 3: Password Checker</h1>
+    <form onsubmit="return validatePasswords();">
+        <label for="password1">Password:</label>
+        <input type="password" id="password1" name="password1"><br><br>
+
+        <label for="password2">Confirm Password:</label>
+        <input type="password" id="password2" name="password2"><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+    <script>
+    // Your JavaScript code goes here
+        const pass1 = document.getElementById('password1');
+        const pass2 = document.getElementById('password2');
+        function validatePasswords() {
+            if (pass1.value.length < 8 || pass2.value.length < 8){
+                alert('Passwords must be at least 8 characters long!');
+                return false;
+            }
+            else if (pass1.value !== pass2.value) {
+                alert('Passwords do not match!');
+                return false;
+            }
+            alert('Passwords match!');
+            return true;
+        }
+    </script>
+</body>
+</html>

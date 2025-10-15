@@ -1,0 +1,4 @@
+temps: temps.c
+	gcc -Wall -std=c11 temps.c -o temps
+clean:
+	rm -f temps

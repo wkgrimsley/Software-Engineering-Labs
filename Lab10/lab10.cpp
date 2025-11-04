@@ -2,10 +2,11 @@
 #include <iostream>
 #include <algorithm>
 #include <fstream>
-
+//github copilot used to help with algorithms to perform the addition 
 bool isDigit(char c) {
     return c>= '0' && c<= '9';
 }
+//check if the values are actually doubles or not - checks if there is a decimal, + or -, return false if it is not valid
 bool isDouble(const std::string& str){
     bool decimal=false;
 
@@ -25,7 +26,7 @@ bool isDouble(const std::string& str){
     }
     return true;
 }
-
+//equalize the decimal places by padding zeros to make it easier to add
 void equalDecimal(std::string& num1, std::string& num2){
     size_t dec1 = num1.find('.');
     size_t dec2 = num2.find('.');
@@ -47,6 +48,7 @@ void equalDecimal(std::string& num1, std::string& num2){
 }
 
 // Compare magnitudes of two non-signed decimal strings. Returns 1 if a>b, 0 if equal, -1 if a<b
+//idea from github copilot - i added code with help from it
 int compareMagnitude(std::string a, std::string b) {
     if (a.size() == 0) a = "0";
     if (b.size() == 0) b = "0";
@@ -70,7 +72,8 @@ int compareMagnitude(std::string a, std::string b) {
     return 0;
 }
 
-// Subtract magnitudes a - b (both non-signed decimal strings) assuming a >= b. Returns positive result string.
+//Subtract magnitudes a - b (both non-signed decimal strings) assuming a >= b. Returns positive result string.
+//code simplified by github copilot
 std::string subtractMagnitudes(std::string a, std::string b) {
     if (a.find('.') == std::string::npos) a += ".0";
     if (b.find('.') == std::string::npos) b += ".0";
@@ -126,7 +129,7 @@ std::string subtractMagnitudes(std::string a, std::string b) {
     if (finalRes.empty()) return "0";
     return finalRes;
 }
-
+//add the doubles (strings)
 std::string addDoubles(std::string num1, std::string num2) {
     // remove leading plus signs
     if (!num1.empty() && num1[0] == '+') num1 = num1.substr(1);
@@ -210,34 +213,34 @@ std::string addDoubles(std::string num1, std::string num2) {
         }
     }
     }
-
+//remove whitespace - trim the doubles
 std::string trim(const std::string& str){
     size_t first = str.find_first_not_of(" \t\n\r");
     if (first == std::string::npos) return "";
     size_t last = str.find_last_not_of(" \t\n\r");
     return str.substr(first, (last - first + 1));
 }
-
+//process the numberpair to be used
 void processNumberPair(const std::string& line, int pairNumber) {
     size_t spacePos = line.find_first_of(" \t");
     if (spacePos != std::string::npos) {
         std::string num1 = trim(line.substr(0, spacePos));
         std::string num2 = trim(line.substr(spacePos + 1));
-        
+        //check if they're doubles and then say what the numbers are
         if (isDouble(num1) && isDouble(num2)) {
             std::cout << "\nPair " << pairNumber << ":" << std::endl;
             std::cout << "First number: " << num1 << std::endl;
             std::cout << "Second number: " << num2 << std::endl;
             std::string result = addDoubles(num1, num2);
             std::cout << "Sum: " << result << std::endl;
-        } else {
+        } else { //case for invalid number pair
             std::cout << "\nPair " << pairNumber << ": Invalid number format" << std::endl;
         }
-    } else {
+    } else { //case for invalid format
         std::cout << "\nPair " << pairNumber << ": Invalid line format" << std::endl;
     }
 }
-
+//open the file and get the pairs - then process them and perform the addition
 bool readFromFile(const std::string& filename) {
     std::ifstream file(filename);
     if(!file.is_open()) {
@@ -264,7 +267,7 @@ bool readFromFile(const std::string& filename) {
     file.close();
     return true;
 }
-
+//pass the file to readFromFile() function
 int main() {
     std::string filename;
     
@@ -274,4 +277,5 @@ int main() {
     readFromFile(filename);
     
     return 0;
+
 }
